@@ -1,0 +1,23 @@
+//Constantes configuración pins
+const int PIN_POTHO = A0;
+const int PIN_LED=2;
+ 
+// Variable que almacena el valor leído del fotorresistor (0 a 1023)
+int value;
+ 
+void setup(){
+ pinMode(PIN_LED, OUTPUT); 
+ pinMode(PIN_PHOTO, INPUT);
+}
+ 
+// Realiza lectura fotorresistor y apaga el led sí hay luz
+void loop(){
+  value = analogRead(PIN_PHOTO);
+  if (value > 50){
+    digitalWrite(PIN_LED, LOW);  // Apagar LED
+  } else{
+    digitalWrite(PIN_LED, HIGH); // Encender LED
+  }
+  // Esperar un segundo a siguiente lectura
+  delay(1000);
+}
