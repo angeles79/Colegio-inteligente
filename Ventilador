@@ -1,0 +1,32 @@
+const int pin = 9;
+
+const float thresholdLOW = 20.0;
+const float thresholdHIGH= 30.0;
+
+bool state = false; /// ventilador activo o inactivo
+
+float GetTemperature()
+{
+  return 20.0;  //sustituir en función del sensor empleado
+}
+
+void setup() {
+  pinMode(pin, OUTPUT);  //definir pin como salida
+}
+ 
+void loop(){
+  float currentTemperature = GetTemperature();
+
+  if(state == false && currentTemperature > thresholdHIGH)
+  {
+      state = true;
+      digitalWrite(pin, HIGH);   // encender ventilador
+  }
+  if(state == true && currentTemperature < thresholdLOW)
+  {
+      state = false;
+      digitalWrite(pin, LOW);   // apagar ventilador
+  }
+
+   delay(5000);  // esperar 5 segundos entre mediciones
+ }
